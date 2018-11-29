@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Angularjs入门</title>
+    <script type="text/javascript" src="./plugins/angularjs/angular.min.js"></script>
+
+    <script>
+        //建立模块,指定模块名,[]里面存放其他模块,如果当前模块引用了其他模块,在这里引用
+        var app=angular.module("myApp",[]);
+
+        //通过模块创建控制器(控制器控制数据模型的改变),$scope是控制层与视图层交换数据的桥梁(用来定义变量和方法)
+        app.controller('myContorller',function ($scope) {
+            $scope.add=function () {
+                $scope.sum=parseInt($scope.x)+parseInt($scope.y);
+                return sum;
+            }
+
+
+            $scope.list=[10,20,30,40,50];
+
+        });
+    </script>
+</head>
+<!--ng-app启动了angular程序,指定模块
+ng-controller指定控制器,表示这个标签范围内属于这个控制器
+ng-init 初始值-->
+<body ng-app="myApp" ng-controller="myContorller" ng-init="name='喷水狂龙'">
+
+<!--ng-model 双向绑定 从视图获取数据绑定到数据模型对象-->
+<input ng-model="name">
+
+<!--视图从数据模型获取数据,通过{{}}-->
+{{name}}<br><br><br><br>
+
+
+第一个数:<input ng-model="x"><br>
+第二个数:<input ng-model="y"><br>
+<input type="button" ng-click="add()" value="相加"><br>
+<input type="text" value="{{sum}}" placeholder="两数之和"><br>
+angularjs循环:<table>
+    <tr ng-repeat="p in list">
+        <td>{{p}}</td>
+    </tr>
+</table>
+</body>
+</html>
